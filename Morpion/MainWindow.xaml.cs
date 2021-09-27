@@ -20,6 +20,10 @@ namespace Morpion
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        /// <summary>
+        /// Global vars
+        /// </summary>
         string[,] array = new string[3,3];
         // [0,0] [0,1] [0,2]
         // [1,0] [1,1] [1,2]
@@ -30,6 +34,7 @@ namespace Morpion
         int round = 0;
         string symbol = "";
         bool playComputer = false;
+
         public MainWindow()
         {
             InitializeComponent();
