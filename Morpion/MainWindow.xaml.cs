@@ -21,9 +21,6 @@ namespace Morpion
     public partial class MainWindow : Window
     {
 
-        /// <summary>
-        /// Global vars
-        /// </summary>
         string[,] array = new string[3,3];
         // [0,0] [0,1] [0,2]
         // [1,0] [1,1] [1,2]
@@ -83,7 +80,7 @@ namespace Morpion
             }
         }
 
-        int GameStatus() // 0 to be continued, 1 lost, 2 won
+        int GameStatus() // 0 to be continued, 1 draw, 2 won
         {
             // [0,0] [0,1] [0,2]
             // [1,0] [1,1] [1,2]
@@ -115,11 +112,10 @@ namespace Morpion
                 return 2;
             }
 
-            // Check if lost
+            // Check if draw
             foreach (var v in array)
                 if (v == null)
                     return 0;
-
             return 1;
         }
 
@@ -142,7 +138,7 @@ namespace Morpion
 
             if (GameStatus() == 1)
             {
-                if (MessageBox.Show("Match nul, recommencer une nouvelle partie?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Match nul, commencer une nouvelle partie?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Restart();
                 }
@@ -338,7 +334,6 @@ namespace Morpion
 
         void SetRandomBox()
         {
-
             bool isEmpty = false;
 
             while (!isEmpty)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morpion"
         mc:Ignorable="d"
-        Title="MainWindow" Height="490" Width="400" WindowStartupLocation="CenterScreen">
+        Title="Jeu du morpion" Height="490" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
