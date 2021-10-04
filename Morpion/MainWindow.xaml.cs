@@ -32,6 +32,8 @@ namespace Morpion
         string symbol = "";
         bool playComputer = false;
 
+        int langIndex = 0; // FR = 0, DE = 1
+
         public MainWindow()
         {
             InitializeComponent();
@@ -131,14 +133,14 @@ namespace Morpion
 
         void CheckGame2()
         {
-            string player = round % 2 == 0 ? "Joueur 1" : "Joueur 2";
+            string playerWon = round % 2 == 0 ? (Translations.Get["msgPlayer1Won"])[langIndex] : (Translations.Get["msgPlayer2Won"])[langIndex];
 
             if (GameStatus() == 2)
-                MessageBox.Show(string.Format("{0} a gagné!", player));
+                MessageBox.Show(playerWon);
 
             if (GameStatus() == 1)
             {
-                if (MessageBox.Show("Match nul, commencer une nouvelle partie?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show((Translations.Get["msgDraw"])[langIndex], (Translations.Get["msgDrawInfo"])[langIndex], MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Restart();
                 }
@@ -477,6 +479,19 @@ namespace Morpion
                 playComputer = true;
                 ((Button)sender).Background = Brushes.Aquamarine;
             }
+        }
+
+        private void btLang_Click(object sender, RoutedEventArgs e)
+        {
+            langIndex++;
+            langIndex = langIndex % 2;
+
+            this.Title = (Translations.Get["mWTitle"])[langIndex];
+            this.lblPlayer1.Content = (Translations.Get["lblPlayer1"])[langIndex];
+            this.lblPlayer2.Content = (Translations.Get["lblPlayer2"])[langIndex]; 
+            this.btComputer.Content = (Translations.Get["btComputer"])[langIndex];
+            this.btRestart.Content = (Translations.Get["btRestart"])[langIndex];
+            this.btLang.Content = (Translations.Get["btLang"])[langIndex];
         }
     }
 }
