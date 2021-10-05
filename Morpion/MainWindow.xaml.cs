@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Morpion
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -31,6 +28,7 @@ namespace Morpion
         int round = 0;
         string symbol = "";
         bool playComputer = false;
+        bool gameFinished = false;
 
         int langIndex = 0; // FR = 0, DE = 1
 
@@ -136,10 +134,14 @@ namespace Morpion
             string playerWon = round % 2 == 0 ? (Translations.Get["msgPlayer1Won"])[langIndex] : (Translations.Get["msgPlayer2Won"])[langIndex];
 
             if (GameStatus() == 2)
+            {
+                gameFinished = true;
                 MessageBox.Show(playerWon);
+            }
 
             if (GameStatus() == 1)
             {
+                gameFinished = true;
                 if (MessageBox.Show((Translations.Get["msgDraw"])[langIndex], (Translations.Get["msgDrawInfo"])[langIndex], MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Restart();
@@ -364,7 +366,7 @@ namespace Morpion
 
         void Restart()
         {
-            //round = 0;
+            gameFinished = false;
             symbol = "";
             array = new string[3,3];
 
@@ -381,85 +383,60 @@ namespace Morpion
             SetPlayer(1);
         }
 
-        private void bt0_Click(object sender, RoutedEventArgs e)
+        private void HandleButtonClick(Button bt, int dim1, int dim2)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
+            if (gameFinished) return;
+
+            if (bt.Content == "X" || bt.Content == "O")
                 return;
 
-            ((Button)sender).Content = SetSymbol(0, 0);
+            bt.Content = SetSymbol(dim1, dim2);
             CheckGame1();
+        }
+
+        private void bt0_Click(object sender, RoutedEventArgs e)
+        {
+            HandleButtonClick((Button)sender, 0, 0);
         }
 
         private void bt1_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(0, 1);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 0, 1);
         }
 
         private void bt2_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(0, 2);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 0, 2);
         }
 
         private void bt3_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(1, 0);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 1, 0);
         }
 
         private void bt4_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(1, 1);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 1, 1);
         }
 
         private void bt5_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(1, 2);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 1, 2);
         }
 
         private void bt6_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(2, 0);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 2, 0);
         }
 
         private void bt7_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(2, 1);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 2, 1);
         }
 
         private void bt8_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "X" || ((Button)sender).Content == "O")
-                return;
-
-            ((Button)sender).Content = SetSymbol(2, 2);
-            CheckGame1();
+            HandleButtonClick((Button)sender, 2, 2);
         }
 
         private void btRestart_Click(object sender, RoutedEventArgs e)
