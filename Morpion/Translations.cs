@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Morpion
 {
-
-
     class Translations
     {
         public static Dictionary<string, string[]> Get = new Dictionary<string, string[]>
@@ -23,6 +21,5 @@ namespace Morpion
             { "msgDraw", new string[]{ "Match nul, commencer une nouvelle partie?", "Unentschieden, ein neues Spiel starten?" } },
             { "msgDrawInfo", new string[]{ "Question", "Frage" } },
         };
-
     }
 }
