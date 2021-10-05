@@ -123,6 +123,8 @@ namespace Morpion
         {
             CheckGame2();
 
+            if (gameFinished) return;
+
             round++;
 
             if (playComputer && round % 2 == 1)
