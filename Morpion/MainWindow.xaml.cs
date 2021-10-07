@@ -1,36 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Morpion
 {
     public partial class MainWindow : Window
     {
+        private string[,] array = new string[3,3];
 
-        string[,] array = new string[3,3];
         // [0,0] [0,1] [0,2]
         // [1,0] [1,1] [1,2]
         // [2,0] [2,1] [2,2]
 
-        Button[,] buttons= new Button[3,3];
-
-        int round = 0;
-        string symbol = "";
-        bool playComputer = false;
-        bool gameFinished = false;
-
-        int langIndex = 0; // FR = 0, DE = 1
+        private readonly Button[,] buttons= new Button[3,3];
+        private int round;
+        private string symbol;
+        private bool playComputer;
+        private bool gameFinished;
+        private int langIndex; // FR = 0, DE = 1
 
         public MainWindow()
         {
@@ -45,9 +33,15 @@ namespace Morpion
             buttons[2, 0] = bt6;
             buttons[2, 1] = bt7;
             buttons[2, 2] = bt8;
+
+            round = 0;
+            symbol = "";
+            playComputer = false;
+            gameFinished = false;
+            langIndex = 0;
         }
 
-        string SetSymbol(int dim0, int dim1)
+        private string SetSymbol(int dim0, int dim1)
         {
             if (round % 2 == 0) // Player 1
             {
@@ -65,7 +59,7 @@ namespace Morpion
             return symbol;
         }
 
-        void SetPlayer(int player)
+        private void SetPlayer(int player)
         {
             switch (player)
             {
@@ -80,7 +74,7 @@ namespace Morpion
             }
         }
 
-        int GameStatus() // 0 to be continued, 1 draw, 2 won
+        private int GameStatus() // 0 to be continued, 1 draw, 2 won
         {
             // [0,0] [0,1] [0,2]
             // [1,0] [1,1] [1,2]
@@ -114,24 +108,34 @@ namespace Morpion
 
             // Check if draw
             foreach (var v in array)
+            {
                 if (v == null)
+                {
                     return 0;
+                }
+            }
+
             return 1;
         }
 
-        void CheckGame1()
+        private void CheckGame1()
         {
             CheckGame2();
 
-            if (gameFinished) return;
+            if (gameFinished)
+            {
+                return;
+            }
 
             round++;
 
             if (playComputer && round % 2 == 1)
+            {
                 PlayComputer();
+            }
         }
 
-        void CheckGame2()
+        private void CheckGame2()
         {
             string playerWon = round % 2 == 0 ? (Translations.Get["msgPlayer1Won"])[langIndex] : (Translations.Get["msgPlayer2Won"])[langIndex];
 
@@ -151,7 +155,7 @@ namespace Morpion
             }
         }
 
-        void PlayComputer()
+        private void PlayComputer()
         {
             symbol = "O";
             string symbolsToFind = "XX";
@@ -214,7 +218,7 @@ namespace Morpion
             round++;
         }
 
-        void BlockBox(string box)
+        private void BlockBox(string box)
         {
             // [0,0] [0,1] [0,2]
             // [1,0] [1,1] [1,2]
@@ -338,7 +342,7 @@ namespace Morpion
             }
         }
 
-        void SetRandomBox()
+        private void SetRandomBox()
         {
             bool isEmpty = false;
 
@@ -366,7 +370,7 @@ namespace Morpion
             }
         }
 
-        void Restart()
+        private void Restart()
         {
             gameFinished = false;
             symbol = "";
@@ -387,66 +391,71 @@ namespace Morpion
 
         private void HandleButtonClick(Button bt, int dim1, int dim2)
         {
-            if (gameFinished) return;
-
-            if (bt.Content == "X" || bt.Content == "O")
+            if (gameFinished)
+            {
                 return;
+            }
+
+            if (bt.Content is "X" or "O")
+            {
+                return;
+            }
 
             bt.Content = SetSymbol(dim1, dim2);
             CheckGame1();
         }
 
-        private void bt0_Click(object sender, RoutedEventArgs e)
+        private void Bt0_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 0, 0);
         }
 
-        private void bt1_Click(object sender, RoutedEventArgs e)
+        private void Bt1_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 0, 1);
         }
 
-        private void bt2_Click(object sender, RoutedEventArgs e)
+        private void Bt2_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 0, 2);
         }
 
-        private void bt3_Click(object sender, RoutedEventArgs e)
+        private void Bt3_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 1, 0);
         }
 
-        private void bt4_Click(object sender, RoutedEventArgs e)
+        private void Bt4_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 1, 1);
         }
 
-        private void bt5_Click(object sender, RoutedEventArgs e)
+        private void Bt5_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 1, 2);
         }
 
-        private void bt6_Click(object sender, RoutedEventArgs e)
+        private void Bt6_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 2, 0);
         }
 
-        private void bt7_Click(object sender, RoutedEventArgs e)
+        private void Bt7_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 2, 1);
         }
 
-        private void bt8_Click(object sender, RoutedEventArgs e)
+        private void Bt8_Click(object sender, RoutedEventArgs e)
         {
             HandleButtonClick((Button)sender, 2, 2);
         }
 
-        private void btRestart_Click(object sender, RoutedEventArgs e)
+        private void BtRestart_Click(object sender, RoutedEventArgs e)
         {
             Restart();
         }
 
-        private void btComputer_Click(object sender, RoutedEventArgs e)
+        private void BtComputer_Click(object sender, RoutedEventArgs e)
         {
             if (playComputer)
             {
@@ -460,17 +469,17 @@ namespace Morpion
             }
         }
 
-        private void btLang_Click(object sender, RoutedEventArgs e)
+        private void BtLang_Click(object sender, RoutedEventArgs e)
         {
             langIndex++;
             langIndex = langIndex % 2;
 
-            this.Title = (Translations.Get["mWTitle"])[langIndex];
-            this.lblPlayer1.Content = (Translations.Get["lblPlayer1"])[langIndex];
-            this.lblPlayer2.Content = (Translations.Get["lblPlayer2"])[langIndex]; 
-            this.btComputer.Content = (Translations.Get["btComputer"])[langIndex];
-            this.btRestart.Content = (Translations.Get["btRestart"])[langIndex];
-            this.btLang.Content = (Translations.Get["btLang"])[langIndex];
+            Title = (Translations.Get["mWTitle"])[langIndex];
+            lblPlayer1.Content = (Translations.Get["lblPlayer1"])[langIndex];
+            lblPlayer2.Content = (Translations.Get["lblPlayer2"])[langIndex]; 
+            btComputer.Content = (Translations.Get["btComputer"])[langIndex];
+            btRestart.Content = (Translations.Get["btRestart"])[langIndex];
+            btLang.Content = (Translations.Get["btLang"])[langIndex];
         }
     }
 }

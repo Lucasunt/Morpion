@@ -25,18 +25,18 @@
         <Label x:Name="lblPlayer1" Visibility="Visible" Grid.ColumnSpan="3" Content="A joueur 1 de jouer" FontSize="14" FontWeight="Black" Margin="10 1"/>
         <Label x:Name="lblPlayer2" Visibility="Hidden" Grid.ColumnSpan="3" Content="A joueur 2 de jouer" FontSize="14" FontWeight="Black" Margin="10 1" HorizontalAlignment="Right"/>
         
-        <Button x:Name="bt0" Grid.Column="0" Grid.Row="1" FontSize="30" Click="bt0_Click"/>
-        <Button x:Name="bt1" Grid.Column="1" Grid.Row="1" FontSize="30" Click="bt1_Click"/>
-        <Button x:Name="bt2" Grid.Column="2" Grid.Row="1" FontSize="30" Click="bt2_Click"/>
-        <Button x:Name="bt3" Grid.Column="0" Grid.Row="2" FontSize="30" Click="bt3_Click"/>
-        <Button x:Name="bt4" Grid.Column="1" Grid.Row="2" FontSize="30" Click="bt4_Click"/>
-        <Button x:Name="bt5" Grid.Column="2" Grid.Row="2" FontSize="30" Click="bt5_Click"/>
-        <Button x:Name="bt6" Grid.Column="0" Grid.Row="3" FontSize="30" Click="bt6_Click"/>
-        <Button x:Name="bt7" Grid.Column="1" Grid.Row="3" FontSize="30" Click="bt7_Click"/>
-        <Button x:Name="bt8" Grid.Column="2" Grid.Row="3" FontSize="30" Click="bt8_Click"/>
+        <Button x:Name="bt0" Grid.Column="0" Grid.Row="1" FontSize="30" Click="Bt0_Click"/>
+        <Button x:Name="bt1" Grid.Column="1" Grid.Row="1" FontSize="30" Click="Bt1_Click"/>
+        <Button x:Name="bt2" Grid.Column="2" Grid.Row="1" FontSize="30" Click="Bt2_Click"/>
+        <Button x:Name="bt3" Grid.Column="0" Grid.Row="2" FontSize="30" Click="Bt3_Click"/>
+        <Button x:Name="bt4" Grid.Column="1" Grid.Row="2" FontSize="30" Click="Bt4_Click"/>
+        <Button x:Name="bt5" Grid.Column="2" Grid.Row="2" FontSize="30" Click="Bt5_Click"/>
+        <Button x:Name="bt6" Grid.Column="0" Grid.Row="3" FontSize="30" Click="Bt6_Click"/>
+        <Button x:Name="bt7" Grid.Column="1" Grid.Row="3" FontSize="30" Click="Bt7_Click"/>
+        <Button x:Name="bt8" Grid.Column="2" Grid.Row="3" FontSize="30" Click="Bt8_Click"/>
 
-        <Button x:Name="btComputer" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Jouer contre l'ordinateur" Click="btComputer_Click"/>
-        <Button x:Name="btRestart" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Recommencer" Click="btRestart_Click"/>
-        <Button x:Name="btLang" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Deutsch" Click="btLang_Click"/>
+        <Button x:Name="btComputer" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Jouer contre l'ordinateur" Click="BtComputer_Click"/>
+        <Button x:Name="btRestart" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Recommencer" Click="BtRestart_Click"/>
+        <Button x:Name="btLang" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" FontSize="14" Background="White" Content="Deutsch" Click="BtLang_Click"/>
     </Grid>
 </Window>
