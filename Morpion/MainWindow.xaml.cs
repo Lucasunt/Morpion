@@ -7,13 +7,13 @@ namespace Morpion
 {
     public partial class MainWindow : Window
     {
-        private string[,] array = new string[3,3];
+        private string[,] array = new string[3, 3];
 
         // [0,0] [0,1] [0,2]
         // [1,0] [1,1] [1,2]
         // [2,0] [2,1] [2,2]
 
-        private readonly Button[,] buttons= new Button[3,3];
+        private readonly Button[,] buttons = new Button[3, 3];
         private int round;
         private string symbol;
         private bool playComputer;
@@ -50,7 +50,7 @@ namespace Morpion
             }
 
             if (round % 2 == 1 && !playComputer) // Player 2
-            { 
+            {
                 symbol = "O";
                 SetPlayer(1);
             }
@@ -79,7 +79,7 @@ namespace Morpion
             // [0,0] [0,1] [0,2]
             // [1,0] [1,1] [1,2]
             // [2,0] [2,1] [2,2]
-            
+
             // Check if won
             string symbolToFind = string.Format("{0}{1}{2}", symbol, symbol, symbol);
 
@@ -94,13 +94,13 @@ namespace Morpion
             string diag1 = string.Format("{0}{1}{2}", array[0, 0], array[1, 1], array[2, 2]);
             string diag2 = string.Format("{0}{1}{2}", array[2, 0], array[1, 1], array[0, 2]);
 
-            if (row1 == symbolToFind 
-                || row2 == symbolToFind 
-                || row3 == symbolToFind 
-                || col1 == symbolToFind 
-                || col2 == symbolToFind 
-                || col3 == symbolToFind 
-                || diag1 == symbolToFind 
+            if (row1 == symbolToFind
+                || row2 == symbolToFind
+                || row3 == symbolToFind
+                || col1 == symbolToFind
+                || col2 == symbolToFind
+                || col3 == symbolToFind
+                || diag1 == symbolToFind
                 || diag2 == symbolToFind)
             {
                 return 2;
@@ -137,7 +137,7 @@ namespace Morpion
 
         private void CheckGame2()
         {
-            string playerWon = round % 2 == 0 ? (Translations.Get["msgPlayer1Won"])[langIndex] : (Translations.Get["msgPlayer2Won"])[langIndex];
+            string playerWon = round % 2 == 0 ? Translations.Get["msgPlayer1Won"][langIndex] : Translations.Get["msgPlayer2Won"][langIndex];
 
             if (GameStatus() == 2)
             {
@@ -148,7 +148,7 @@ namespace Morpion
             if (GameStatus() == 1)
             {
                 gameFinished = true;
-                if (MessageBox.Show((Translations.Get["msgDraw"])[langIndex], (Translations.Get["msgDrawInfo"])[langIndex], MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Translations.Get["msgDraw"][langIndex], Translations.Get["msgDrawInfo"][langIndex], MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Restart();
                 }
@@ -348,12 +348,12 @@ namespace Morpion
 
             while (!isEmpty)
             {
-                Random rd1 = new Random();
+                Random rd1 = new();
                 int dim1 = rd1.Next(0, 3);
 
                 System.Threading.Thread.Sleep(1);
 
-                Random rd2 = new Random();
+                Random rd2 = new();
                 int dim2 = rd2.Next(0, 3);
 
                 dim1 = dim1 == 3 ? 2 : dim1;
@@ -374,7 +374,7 @@ namespace Morpion
         {
             gameFinished = false;
             symbol = "";
-            array = new string[3,3];
+            array = new string[3, 3];
 
             bt0.Content = "";
             bt1.Content = "";
@@ -472,14 +472,14 @@ namespace Morpion
         private void BtLang_Click(object sender, RoutedEventArgs e)
         {
             langIndex++;
-            langIndex = langIndex % 2;
+            langIndex %= 2;
 
-            Title = (Translations.Get["mWTitle"])[langIndex];
-            lblPlayer1.Content = (Translations.Get["lblPlayer1"])[langIndex];
-            lblPlayer2.Content = (Translations.Get["lblPlayer2"])[langIndex]; 
-            btComputer.Content = (Translations.Get["btComputer"])[langIndex];
-            btRestart.Content = (Translations.Get["btRestart"])[langIndex];
-            btLang.Content = (Translations.Get["btLang"])[langIndex];
+            Title = Translations.Get["mWTitle"][langIndex];
+            lblPlayer1.Content = Translations.Get["lblPlayer1"][langIndex];
+            lblPlayer2.Content = Translations.Get["lblPlayer2"][langIndex];
+            btComputer.Content = Translations.Get["btComputer"][langIndex];
+            btRestart.Content = Translations.Get["btRestart"][langIndex];
+            btLang.Content = Translations.Get["btLang"][langIndex];
         }
     }
 }
